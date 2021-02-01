@@ -1,73 +1,53 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# Nuber Eats
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+The Backend of Nuber Eats Clone
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+### npm i class-validator
 
-## Description
+### npm i class-transformer
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### TypeORM
 
-## Installation
+https://typeorm.io/#/
 
-```bash
-$ npm install
-```
+### postgresql
 
-## Running the app
+https://postgresapp.com/
 
-```bash
-# development
-$ npm run start
+### configuration 모듈 (env 환경을 사용할수 있게해줌)
 
-# watch mode
-$ npm run start:dev
+npm i --save @nestjs/config
 
-# production mode
-$ npm run start:prod
-```
+### 변수의 유효성 검사를 위한 npm
 
-## Test
+https://joi.dev/api/?v=17.3.0
 
-```bash
-# unit tests
-$ npm run test
+### hash를 만들고 확인하는데 사용하는 모듈
 
-# e2e tests
-$ npm run test:e2e
+https://www.npmjs.com/package/bcrypt
 
-# test coverage
-$ npm run test:cov
-```
+### 토큰 만드는 패키지
 
-## Support
+https://www.npmjs.com/package/jsonwebtoken
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### 랜덤 문자열 생성하기위한 패키지
 
-## Stay in touch
+https://www.npmjs.com/package/uuid
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### 가짜 번호 사용
 
-## License
+https://receive-smss.com/sms/12812363179/
 
-Nest is [MIT licensed](LICENSE).
+### 프론트엔드의 axios 같은 놈
+
+https://www.npmjs.com/package/got
+
+#### form-data sms node.js에서 스트림을 만드는 라이브러리
+
+#### FromData란 ajax로 폼 전송을 가능하게 해주는 FormData 객체입니다. 보통은 Ajax로 폼(form 태그) 전송을 할 일이 거의 없습니다. 주로 JSON 구조로 "KEY-VALUE" (키와 값) 구조로 데이터를 전송합니다.
+
+https://www.npmjs.com/package/form-data
+
+### mail 보내주는 사이트
+
+https://www.mailgun.com/
