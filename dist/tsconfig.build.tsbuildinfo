@@ -5802,7 +5802,7 @@
       },
       "../src/users/dtos/edit-profile.dto.ts": {
         "version": "0bf48e5effb2e465ce3f96374a488fac6e08f7451cc8dc65873a5630c72b9f0a",
-        "signature": "0307c6fd1aadee07ffdd5427d04b307c3cdaef4775491db0d6410888fce8a5aa",
+        "signature": "05682fe131683544130e15e9826c55f093ca6de3b353e1bc8061c38a755c60a5",
         "affectsGlobalScope": false
       },
       "../src/users/dtos/login.dto.ts": {
@@ -5997,7 +5997,7 @@
       },
       "../src/restaurants/dtos/create-dish.dto.ts": {
         "version": "9897c56db896d817528f5bbe2a948f07ae47000698d0a49c28dcff912fc7cbb5",
-        "signature": "a3f23de87fd41a7f701733309d2dd447849f4a53a1cf6a136cd11107c14c1db1",
+        "signature": "a84f597e5ac36ca7afcec9431989bf1a962db6af1d628bac29b57d84ba520e29",
         "affectsGlobalScope": false
       },
       "../src/restaurants/dtos/create-restaurant.dto.ts": {
@@ -6017,7 +6017,7 @@
       },
       "../src/restaurants/dtos/edit-dish.dto.ts": {
         "version": "bbf1f51df07113d476d6759a9bb81d2063bdef8416a125e1bc3c3d9635ae8c18",
-        "signature": "5775b303a02668522b5fe9306aaf2252b60780e991a8cb592f6325412bb0c22d",
+        "signature": "be63d5a26f3d07e47eb62964c28897321c1f8543b783af736e6d417ae26948cf",
         "affectsGlobalScope": false
       },
       "../src/restaurants/dtos/edit-restaurant.dto.ts": {
