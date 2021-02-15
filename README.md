@@ -51,3 +51,7 @@ https://www.npmjs.com/package/form-data
 ### mail 보내주는 사이트
 
 https://www.mailgun.com/
+
+### graphql 에서 subscriptions를 사용할 수 있게 해줌. real-time 처리를 할 수 있게 해줌
+
+https://www.npmjs.com/package/graphql-subscriptions

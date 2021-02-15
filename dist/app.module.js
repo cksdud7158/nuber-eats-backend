@@ -13,9 +13,9 @@ const config_1 = require("@nestjs/config");
 const graphql_1 = require("@nestjs/graphql");
 const typeorm_1 = require("@nestjs/typeorm");
 const users_module_1 = require("./users/users.module");
+const common_module_1 = require("./common/common.module");
 const user_entity_1 = require("./users/entities/user.entity");
 const jwt_module_1 = require("./jwt/jwt.module");
-const jwt_middleware_1 = require("./jwt/jwt.middleware");
 const auth_module_1 = require("./auth/auth.module");
 const verification_entity_1 = require("./users/entities/verification.entity");
 const mail_module_1 = require("./mail/mail.module");
@@ -25,13 +25,11 @@ const restaurants_module_1 = require("./restaurants/restaurants.module");
 const dish_entity_1 = require("./restaurants/entities/dish.entity");
 const orders_module_1 = require("./orders/orders.module");
 const order_entity_1 = require("./orders/entities/order.entity");
+const order_item_entity_1 = require("./orders/entities/order-item.entity");
+const payments_module_1 = require("./payments/payments.module");
+const payment_entity_1 = require("./payments/entities/payment.entity");
+const schedule_1 = require("@nestjs/schedule");
 let AppModule = class AppModule {
-    configure(consumer) {
-        consumer.apply(jwt_middleware_1.JwtMiddleware).forRoutes({
-            path: '/graphql',
-            method: common_1.RequestMethod.POST,
-        });
-    }
 };
 AppModule = __decorate([
     common_1.Module({
@@ -62,11 +60,26 @@ AppModule = __decorate([
                 database: process.env.DB_NAME,
                 synchronize: process.env.NODE_ENV !== 'prod',
                 logging: process.env.NODE_ENV !== 'prod' && process.env.NODE_ENV !== 'test',
-                entities: [user_entity_1.User, verification_entity_1.Verification, restaurant_entity_1.Restaurant, category_entity_1.Category, dish_entity_1.Dish, order_entity_1.Order],
+                entities: [
+                    user_entity_1.User,
+                    verification_entity_1.Verification,
+                    restaurant_entity_1.Restaurant,
+                    category_entity_1.Category,
+                    dish_entity_1.Dish,
+                    order_entity_1.Order,
+                    order_item_entity_1.OrderItem,
+                    payment_entity_1.Payment,
+                ],
             }),
             graphql_1.GraphQLModule.forRoot({
+                installSubscriptionHandlers: true,
                 autoSchemaFile: true,
-                context: ({ req }) => ({ user: req['user'] }),
+                context: ({ req, connection }) => {
+                    const TOKEN_KEY = 'x-jwt';
+                    return {
+                        token: req ? req.headers[TOKEN_KEY] : connection.context[TOKEN_KEY],
+                    };
+                },
             }),
             jwt_module_1.JwtModule.forRoot({
                 privateKey: process.env.PRIVATE_KEY,
@@ -76,10 +89,13 @@ AppModule = __decorate([
                 domain: process.env.MAILGUN_DOMAIN_NAME,
                 fromEmail: process.env.MAILGUN_FROM_EMAIL,
             }),
+            schedule_1.ScheduleModule.forRoot(),
             auth_module_1.AuthModule,
             users_module_1.UsersModule,
             restaurants_module_1.RestaurantsModule,
             orders_module_1.OrdersModule,
+            common_module_1.CommonModule,
+            payments_module_1.PaymentsModule,
         ],
         controllers: [],
         providers: [],

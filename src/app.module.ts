@@ -12,7 +12,6 @@ import { UsersModule } from './users/users.module';
 import { CommonModule } from './common/common.module';
 import { User } from './users/entities/user.entity';
 import { JwtModule } from './jwt/jwt.module';
-import { JwtMiddleware } from './jwt/jwt.middleware';
 import { AuthModule } from './auth/auth.module';
 import { Verification } from './users/entities/verification.entity';
 import { MailModule } from './mail/mail.module';
@@ -22,6 +21,10 @@ import { RestaurantsModule } from './restaurants/restaurants.module';
 import { Dish } from './restaurants/entities/dish.entity';
 import { OrdersModule } from './orders/orders.module';
 import { Order } from './orders/entities/order.entity';
+import { OrderItem } from './orders/entities/order-item.entity';
+import { PaymentsModule } from './payments/payments.module';
+import { Payment } from './payments/entities/payment.entity';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -52,11 +55,26 @@ import { Order } from './orders/entities/order.entity';
       synchronize: process.env.NODE_ENV !== 'prod',
       logging:
         process.env.NODE_ENV !== 'prod' && process.env.NODE_ENV !== 'test',
-      entities: [User, Verification, Restaurant, Category, Dish, Order],
+      entities: [
+        User,
+        Verification,
+        Restaurant,
+        Category,
+        Dish,
+        Order,
+        OrderItem,
+        Payment,
+      ],
     }),
     GraphQLModule.forRoot({
+      installSubscriptionHandlers: true, // 서버가 웹소켓 기능을 가지게됨
       autoSchemaFile: true,
-      context: ({ req }) => ({ user: req['user'] }),
+      context: ({ req, connection }) => {
+        const TOKEN_KEY = 'x-jwt';
+        return {
+          token: req ? req.headers[TOKEN_KEY] : connection.context[TOKEN_KEY],
+        };
+      },
     }),
     JwtModule.forRoot({
       privateKey: process.env.PRIVATE_KEY,
@@ -66,28 +84,30 @@ import { Order } from './orders/entities/order.entity';
       domain: process.env.MAILGUN_DOMAIN_NAME,
       fromEmail: process.env.MAILGUN_FROM_EMAIL,
     }),
+    ScheduleModule.forRoot(),
     AuthModule,
     UsersModule,
     RestaurantsModule,
     OrdersModule,
+    CommonModule,
+    PaymentsModule,
   ],
   controllers: [],
   providers: [],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    // consumer
-    //   .apply(JwtMiddleware)
-    //   .forRoutes({ path: '*', method: RequestMethod.ALL });
-    // consumer.apply(JwtMiddleware).exclude({
-    //   // api 만 제외하고 middleware 가 적용됨
-    //   path: 'api',
-    //   method: RequestMethod.ALL,
-    // });
+// export class AppModule implements NestModule {
+//   configure(consumer: MiddlewareConsumer) {
+//     // consumer
+//     //   .apply(JwtMiddleware)
+//     //   .forRoutes({ path: '*', method: RequestMethod.ALL });
+//     // consumer.apply(JwtMiddleware).exclude({
+//     //   // api 만 제외하고 middleware 가 적용됨
+//     //   path: 'api',
+//     //   method: RequestMethod.ALL,
+//     // });
 
-    consumer.apply(JwtMiddleware).forRoutes({
-      path: '/graphql',
-      method: RequestMethod.POST,
-    });
-  }
-}
+//     consumer.apply(JwtMiddleware).forRoutes({
+//       path: '/graphql',
+//       method: RequestMethod.POST,
+//     });
+export class AppModule {}
