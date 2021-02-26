@@ -55,3 +55,12 @@ https://www.mailgun.com/
 ### graphql 에서 subscriptions를 사용할 수 있게 해줌. real-time 처리를 할 수 있게 해줌
 
 https://www.npmjs.com/package/graphql-subscriptions
+
+### 파일 업로드에 필요한 패키지
+
+https://www.npmjs.com/package/multer
+npm i multer
+
+# aws-sdk
+
+https://www.npmjs.com/package/aws-sdk

@@ -59,5 +59,7 @@ export class MailService {
       { key: 'code', value: code },
       { key: 'username', value: email },
     ]);
+
+    console.log('Email sent');
   }
 }

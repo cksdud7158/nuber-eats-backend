@@ -19,6 +19,7 @@ import {
   EditRestaurantInput,
   EditRestaurantOutput,
 } from './dtos/edit-restaurant.dto';
+import { MyRestaurantsOutput } from './dtos/my-restaruants.dto';
 import { RestaurantInput, RestaurantOutput } from './dtos/restaurant.dto';
 import { RestaurantsInput, RestaurantsOutput } from './dtos/restaurants.dto';
 import {
@@ -56,6 +57,7 @@ export class RestaurantService {
       await this.restaurants.save(newRestaurant);
       return {
         ok: true,
+        restaurantId: newRestaurant.id,
       };
     } catch {
       return {
@@ -172,7 +174,7 @@ export class RestaurantService {
           error: 'Category not found',
         };
       }
-      const restaurants = await this.restaurants.find({
+      const [restaurants, totalResults] = await this.restaurants.findAndCount({
         where: {
           category,
         },
@@ -183,12 +185,13 @@ export class RestaurantService {
         skip: (page - 1) * 25,
       });
       category.restaurants = restaurants;
-      const totalResults = await this.countRestaurants(category);
+      // const totalResults = await this.countRestaurants(category);
       return {
         ok: true,
         restaurants,
         category,
         totalPages: Math.ceil(totalResults / 25),
+        totalResults,
       };
     } catch {
       return {
@@ -372,6 +375,21 @@ export class RestaurantService {
       return {
         ok: false,
         error: 'Could not delete dish',
+      };
+    }
+  }
+
+  async myRestaurants(owner: User): Promise<MyRestaurantsOutput> {
+    try {
+      const restaurants = await this.restaurants.find({ owner });
+      return {
+        restaurants,
+        ok: true,
+      };
+    } catch {
+      return {
+        ok: false,
+        error: 'Could not find restaurnts',
       };
     }
   }
