@@ -28,7 +28,9 @@ export class Restaurant extends CoreEntity {
   address: string;
 
   @Field((type) => Category)
-  @ManyToOne((type) => Category, (category) => category.restaurants)
+  @ManyToOne((type) => Category, (category) => category.restaurants, {
+    eager: true,
+  })
   category: Category;
 
   @Field((type) => User)
