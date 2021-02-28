@@ -7,7 +7,7 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import * as AWS from 'aws-sdk';
 
-const BUCKET_NAME = 'afawefwadaf123123124';
+const BUCKET_NAME = 'nwjlawkdjdlakkdkd';
 
 @Controller('uploads')
 export class UploadsController {
@@ -17,15 +17,20 @@ export class UploadsController {
     // 환경 설정
     AWS.config.update({
       credentials: {
-        accessKeyId: 'AKIAZWQGLVTMSR5J35ZR',
-        secretAccessKey: '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',
+        accessKeyId: 'AKIAYAQFJNQNC6BI776B',
+        secretAccessKey: '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',
       },
       region: 'ap-northeast-2',
     });
     try {
+      // 최초 S3에 버킷을 생성해줘야함
+      // const upload = await new AWS.S3()
+      //   .createBucket({
+      //     Bucket: 'nwjlawkdjdlakkdkd',
+      //   })
+      //   .promise();
+      // console.log('upload', upload);
       const objectName = `${Date.now() + file.originalname}`;
-      // 원래 코드로 AWS S3의 버킷을 생성해야하나 잘 안되서 그냥 홈페이지 들어가서 직접 버킷 설정
-      // 그러고 put 하면 파일 업로드됨
       await new AWS.S3()
         .putObject({
           Body: file.buffer,
