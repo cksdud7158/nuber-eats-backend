@@ -6,19 +6,21 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import * as AWS from 'aws-sdk';
+import { ConfigService } from '@nestjs/config';
 
 const BUCKET_NAME = 'nwjlawkdjdlakkdkd';
 
 @Controller('uploads')
 export class UploadsController {
+  constructor(private readonly configService: ConfigService) {}
   @Post('')
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(@UploadedFile() file) {
     // 환경 설정
     AWS.config.update({
       credentials: {
-        accessKeyId: 'AKIAYAQFJNQNC6BI776B',
-        secretAccessKey: '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',
+        accessKeyId: this.configService.get('AWS_KEY'),
+        secretAccessKey: this.configService.get('AWS_SECRET'),
       },
       region: 'ap-northeast-2',
     });
