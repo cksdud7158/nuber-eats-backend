@@ -61,6 +61,16 @@ https://www.npmjs.com/package/graphql-subscriptions
 https://www.npmjs.com/package/multer
 npm i multer
 
-# aws-sdk
+### aws-sdk
 
 https://www.npmjs.com/package/aws-sdk
+
+### localhost url 로 리다이렉트 해주는 패키지
+
+npx ngrok
+npx ngrok http 4000
+
+## deploy 과정
+
+heroku 를 사용할 것
+build 먼저 실행 -> dist 파일 실행
