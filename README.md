@@ -18,6 +18,10 @@ https://postgresapp.com/
 
 npm i --save @nestjs/config
 
+### 가상 변수를 설정할 수 있게 해주는 패키지
+
+npm i cross-env
+
 ### 변수의 유효성 검사를 위한 npm
 
 https://joi.dev/api/?v=17.3.0
